@@ -24,3 +24,6 @@ runs:
       run: |
         pip install pre-commit
         pre-commit run --hook-stage manual --all-files
+  
+    - name: Build website
+      run: yarn build
