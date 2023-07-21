@@ -19,11 +19,14 @@ runs:
 
     - name: Install dependencies
       run: yarn install --immutable --immutable-cache --check-cache --production=true
-
+      shell: bash
+      
     - name: Linting
       run: |
         pip install pre-commit
         pre-commit run --hook-stage manual --all-files
-  
+      shell: bash
+      
     - name: Build website
       run: yarn build
+      shell: bash
