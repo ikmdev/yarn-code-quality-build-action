@@ -1,0 +1,26 @@
+name: Yarn Code Quality Build
+description: A composite action to build and execute code quality steps
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Install Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+
+    - name: Install dependencies
+      run: yarn install --immutable --immutable-cache --check-cache --production=true
+
+    - name: Linting
+      run: |
+        pip install pre-commit
+        pre-commit run --hook-stage manual --all-files
